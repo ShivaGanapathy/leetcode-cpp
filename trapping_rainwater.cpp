@@ -28,4 +28,31 @@ public:
 
         return res;
     }
+    
+    // O(n) time O(1) memory
+    int trap(vector<int>& height) {
+        int lp = 0;
+        int rp = height.size()-1;
+
+        int maxLeft = height.front();
+        int maxRight = height.back();
+
+        int res = 0;
+
+        while (lp < rp) {
+            if (maxLeft <= maxRight) {
+                maxLeft = max(maxLeft, height[++lp]);
+                res += maxLeft - height[lp];
+            }
+            else {
+                maxRight = max(maxRight, height[--rp]);
+                res += maxRight - height[rp];
+            }
+            
+        }
+        
+        return res;
+    }
+    
+    
 };
